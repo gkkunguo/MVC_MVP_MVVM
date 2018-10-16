@@ -23,16 +23,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MyViewModel myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
-        myViewModel.getUsers().observe(this, observer);
+        myViewModel.getUsers().observe(this, observer1->{
+            for (int i = 0; i < observer1.size(); i++) {
+                Log.i("gk", observer1.get(i).getAge() + "," + observer1.get(i).getName());
+            }
+        });
     }
 
-    private Observer observer = new Observer<List<User>>() {
-        @Override
-        public void onChanged(@Nullable List<User> user) {
-            for (int i = 0; i < user.size(); i++) {
-                Log.i("gk", user.get(i).getAge() + "," + user.get(i).getName());
-            }
-        }
-    };
+//    private Observer observer = new Observer<List<User>>() {
+//        @Override
+//        public void onChanged(@Nullable List<User> user) {
+//            for (int i = 0; i < user.size(); i++) {
+//                Log.i("gk", user.get(i).getAge() + "," + user.get(i).getName());
+//            }
+//        }
+//    };
 
 }
